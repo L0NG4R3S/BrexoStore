@@ -4,8 +4,9 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import './App.css';
+import './styles/App.css';
 import CadastrarBazar from "./CadastrarBazar";
+import CadastrarUser from "./CadastrarUser";
 import Home from "./Home";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/cadastrarBazar" element={<CadastrarBazar />} />
+              <Route path="/cadastrarUsuario" element={<CadastrarUser />} />
             </Routes>
           </div>
         </Router>

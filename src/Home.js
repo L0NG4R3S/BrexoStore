@@ -1,24 +1,33 @@
 import React from "react";
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
+import './styles/Home.css';
 
 function Home() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="cadastrarBazar"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Cadastrar Bazar
-        </a>
-      </header>
+      <div className="App-body">
+        <div className="Home-login">
+          <p>
+            Edit <code>src/App.js</code> and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="cadastrarBazar"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Cadastrar Bazar
+          </a>
+          <a
+            className="App-link"
+            href="cadastrarUsuario"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Cadastrar Usuario
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

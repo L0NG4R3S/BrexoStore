@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import './styles/App.css';
 import axios from 'axios';
 
 function CadastrarBazar() {
@@ -44,7 +44,7 @@ function CadastrarBazar() {
 
   return (
     <div className="CadastrarBazar">
-      <header className="App-header">
+      <header className="App-body">
         <p>
           Cadastre seu Bazar
         </p>
