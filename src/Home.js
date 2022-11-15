@@ -26,6 +26,23 @@ function Home() {
           >
             Cadastrar Brecho
           </a>
+          <a
+            className="App-link"
+            href="login"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Fazer Login
+          </a>
+
+          <a
+            className="App-link"
+            href="signup"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+             Login
+          </a>
         </div>
       </div>
     </div>
