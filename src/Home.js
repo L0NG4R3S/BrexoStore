@@ -12,19 +12,19 @@ function Home() {
           </p>
           <a
             className="App-link"
-            href="cadastrarBazar"
+            href="cadastrarCliente"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Cadastrar Bazar
+            Cadastrar Cliente
           </a>
           <a
             className="App-link"
-            href="cadastrarUsuario"
+            href="cadastrarBrecho"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Cadastrar Usuario
+            Cadastrar Brecho
           </a>
         </div>
       </div>

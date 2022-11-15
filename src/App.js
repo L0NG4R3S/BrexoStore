@@ -5,8 +5,8 @@ import {
   Route,
 } from "react-router-dom";
 import './styles/App.css';
-import CadastrarBazar from "./CadastrarBazar";
-import CadastrarUser from "./CadastrarUser";
+import CadastrarCliente from "./CadastrarCliente";
+import CadastrarBrecho from "./CadastrarBrecho";
 import Home from "./Home";
 
 function App() {
@@ -16,8 +16,8 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/cadastrarBazar" element={<CadastrarBazar />} />
-              <Route path="/cadastrarUsuario" element={<CadastrarUser />} />
+              <Route path="/cadastrarCliente" element={<CadastrarCliente />} />
+              <Route path="/cadastrarBrecho" element={<CadastrarBrecho />} />
             </Routes>
           </div>
         </Router>

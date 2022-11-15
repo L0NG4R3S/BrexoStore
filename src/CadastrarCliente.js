@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './styles/App.css';
-import axios from 'axios';
+import { register } from './sdk/cliente';
 
-function CadastrarBazar() {
+function CadastrarCliente() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -13,40 +13,26 @@ function CadastrarBazar() {
   const [state, setState] = useState('');
 
   const onRegister = () => {
-    console.log(name, email, phone, address, address_number, address_district, city, state)
-    
-    const data = JSON.stringify({
-      name: name,
-      email: email,
-      phone : phone ,
-      address: address,
-      address_number: address_number,
-      address_district: address_district,
-      city: city,
-      state: state
-    });
-
-    const config = {
-      method: 'post',
-      url: 'http://ec2-3-86-207-169.compute-1.amazonaws.com/api/store',
-      headers: { 
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-
-    axios(config)
-      .then((response) => console.log('DEU CERTO', response))
-      .catch((err) => {
-        console.error("ERRO! ocorreu um erro" + err);
-      });
+    register({
+      name,
+      email,
+      // password,
+      // password_confirmation,
+      // cpf,
+      // zip_code,
+      address,
+      address_number,
+      address_district,
+      city,
+      state,
+    })
   }
 
   return (
-    <div className="CadastrarBazar">
+    <div className="CadastrarCliente">
       <header className="App-body">
         <p>
-          Cadastre seu Bazar
+          Insira seus dados
         </p>
 
         <p>
@@ -89,4 +75,4 @@ function CadastrarBazar() {
   );
 }
 
-export default CadastrarBazar;
+export default CadastrarCliente;

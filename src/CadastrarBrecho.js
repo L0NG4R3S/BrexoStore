@@ -1,40 +1,24 @@
 import { useState } from 'react';
 import './styles/App.css';
-import axios from 'axios';
+import { register } from './sdk/brecho'
 
-function CadastrarBazar() {
+function CadastrarBrecho() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [password, setPassword] = useState(''); 
 
   const onRegister = () => {
-
-    const data = JSON.stringify({
+    register({
       name: name,
       email: email,
       password : password ,
       password_confirmation: confirmPassword,
-    });
-
-    const config = {
-      method: 'post',
-      url: 'http://ec2-3-86-207-169.compute-1.amazonaws.com/api/user',
-      headers: { 
-        'Content-Type': 'application/json'
-      },
-      data: data
-    };
-
-    axios(config)
-      .then((response) => console.log('DEU CERTO', response))
-      .catch((err) => {
-        console.error("ERRO ao cadastrar Usuário" + err);
-      });
+    })
   }
 
   return (
-    <div className="CadastrarBazar">
+    <div className="CadastrarBrecho">
       <header className="App-body">
         <p>
           Cadastre seu Bazar
@@ -65,4 +49,4 @@ function CadastrarBazar() {
   );
 }
 
-export default CadastrarBazar;
+export default CadastrarBrecho;
