@@ -25,7 +25,7 @@ export const register = ({
   city,
   state,
 }) => {
-  return post("customer", {
+  return post("customer_api/customer", {
     name,
     email,
     password,

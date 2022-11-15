@@ -8,10 +8,14 @@ import './styles/App.css';
 import CadastrarCliente from "./CadastrarCliente";
 import CadastrarBrecho from "./CadastrarBrecho";
 import Home from "./Home";
+import { Provider } from 'react-redux'
+import store from './store'
+
 
 function App() {
   return (
     <div className="App">
+      <Provider store={store}>
         <Router>
           <div className="container">
             <Routes>
@@ -21,6 +25,7 @@ function App() {
             </Routes>
           </div>
         </Router>
+      </Provider>
     </div>
   );
 }
