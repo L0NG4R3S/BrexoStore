@@ -4,7 +4,7 @@ export const login = ({ email, password }) => {
   return post('api/session', { email, password })
     .then(({ data }) => {
       setAxiosAuthorization(data.session.token)
-      console.log('TOKEN LOGIN', data.session.token)
+      console.log('TOKEN LOGIN BREXO', data.session.token)
       return data;
     })
     .catch((err) => {
