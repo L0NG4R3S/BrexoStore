@@ -41,7 +41,7 @@ function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-             Login
+           Login
           </a>
         </div>
       </div>
