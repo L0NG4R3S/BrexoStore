@@ -14,6 +14,8 @@ export const counterSlice = createSlice({
     address_district: '',
     city: '',
     state: '',
+
+    userType: 'customer' // customer ou store
   },
   reducers: {
     register: (state, action) => {
@@ -29,10 +31,13 @@ export const counterSlice = createSlice({
       state.city = action?.payload?.city
       state.state = action?.payload?.state
     },
+    setUserType: (state, action) => {
+      state.userType = action?.payload?.userType
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { register } = counterSlice.actions
+export const { register, setUserType } = counterSlice.actions
 
 export default counterSlice.reducer

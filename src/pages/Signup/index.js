@@ -78,10 +78,12 @@ const Signup = () => {
         state,
       }))
 
+      dispatch(ClienteActions.setUserType({ userType: 'customer' }))
+
 
       alert("Usuário cadatrado com sucesso!");
 
-      navigate('/') // mudar para navegar para Home
+      navigate('/home')
     }
   };
 

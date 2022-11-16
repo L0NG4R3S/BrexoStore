@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import { Provider } from 'react-redux'
 import store from './store'
 import CadastrarProdutos from "./pages/CadastrarProdutos"
+import Home from "./pages/Home"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={<Signin />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/cadastrarBrecho" element={<CadastrarBrecho />} />
               <Route exact path="/signup" element={<Signup />} />
               <Route exact path="/cadastrarProdutos" element={<CadastrarProdutos />} />

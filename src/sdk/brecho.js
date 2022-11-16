@@ -23,3 +23,13 @@ export const register = ({ name, email, password, password_confirmation }) => {
       throw new Error(err.message);
     });
 };
+
+export const registerProduto = ({ name, description, type, value, store_id }) => {
+  return post('api/product', { name, description, type, value, store_id })
+    .then(({ data }) => {
+      return data;
+    })
+    .catch((err) => {
+      throw new Error(err.message);
+    });
+};

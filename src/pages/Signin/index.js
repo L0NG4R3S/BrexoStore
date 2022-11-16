@@ -4,8 +4,11 @@ import Input from "../../components/Input";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from '../../sdk/cliente';
+import { useDispatch } from 'react-redux'
+import * as ClienteActions from '../../store/clienteSlice'
 
 const Signin = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -21,13 +24,14 @@ const Signin = () => {
 
     try {
       result = await login({ email, password: senha });
-    } catch {
+
       if(!!result?.session){
         alert("Login realizado com sucesso!");
-        navigate('/') // mudar para navegar para Home
-      } else {
-        setError("Erro! Usuário ou senha incorretos.");
+        dispatch(ClienteActions.setUserType({userType: 'customer'}))
+        navigate('/home')
       }
+    } catch {
+      setError("Erro! Usuário ou senha incorretos.");
     }
   };
 
@@ -53,6 +57,14 @@ const Signin = () => {
           Não tem uma conta?
           <C.Strong>
             <Link to="/signup">&nbsp;Registre-se</Link>
+          </C.Strong>
+        </C.LabelSignup>
+        <C.LabelSignup>
+          ou
+        </C.LabelSignup>
+        <C.LabelSignup>
+          <C.Strong>
+            <Link to="/signup">Logue com sua loja</Link>
           </C.Strong>
         </C.LabelSignup>
       </C.Content>
