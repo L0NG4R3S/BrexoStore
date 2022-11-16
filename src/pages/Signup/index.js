@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { register } from '../../sdk/cliente';
 import { useDispatch } from 'react-redux'
 import * as ClienteActions from '../../store/clienteSlice'
+import { Logo } from '../../assets'
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -89,94 +90,98 @@ const Signup = () => {
 
   return (
     <C.Container>
-      <C.Label>Cadastre-se</C.Label>
+     
       <C.Content>
-        <C.Column>
-          <Input
-            type="name"
-            placeholder="Digite seu Nome"
-            value={name}
-            onChange={(e) => [setName(e.target.value), setError("")]}
-          />
-          <Input
-            type="cpf"
-            placeholder="Digite seu CPF"
-            value={cpf}
-            onChange={(e) => [setCpf(e.target.value), setError("")]}
-          />
-          <Input
-            type="email"
-            placeholder="Digite seu E-mail"
-            value={email}
-            onChange={(e) => [setEmail(e.target.value), setError("")]}
-          />
-          <Input
-            type="cep"
-            placeholder="Digite seu CEP"
-            value={zip_code}
-            onChange={(e) => [setZip_code(e.target.value), setError("")]}
-          />
-          <Input
-            type="endereco"
-            placeholder="Digite seu Endereço"
-            value={address}
-            onChange={(e) => [setAddress(e.target.value), setError("")]}
-          />
-        </C.Column>
-        <C.Column>
-          <Input
-            type="Numero"
-            placeholder="Numero"
-            value={address_number}
-            onChange={(e) => [setAddress_number(e.target.value), setError("")]}
-          />
-          <Input
-            type="Bairro"
-            placeholder="Bairro"
-            value={address_district}
-            onChange={(e) => [
-              setAddress_district(e.target.value),
-              setError(""),
-            ]}
-          />
-          <Input
-            type="Cidade"
-            placeholder="Digite sua Cidade"
-            value={city}
-            onChange={(e) => [setCity(e.target.value), setError("")]}
-          />
-          <Input
-            type="Estado"
-            placeholder="Digite seu Estado"
-            value={state}
-            onChange={(e) => [setState(e.target.value), setError("")]}
-          />
-          <Input
-            type="password"
-            placeholder="Digite sua Senha"
-            value={password}
-            onChange={(e) => [setPassword(e.target.value), setError("")]}
-          />
-          <C.Subtitle>* O campo senha deve conter no mínimo 6 caracteres</C.Subtitle>
-          <Input
-            type="password"
-            placeholder="Confirme sua Senha"
-            value={password_confirmation}
-            onChange={(e) => [
-              setPassword_confirmation(e.target.value),
-              setError(""),
-            ]}
-          />
-        </C.Column>
+        <C.Label>Cadastre-se</C.Label>
+        <img style={{ width: 100}} alt="logo" src={Logo} />
+        <C.ContentRow>
+          <C.Column>
+            <Input
+              type="name"
+              placeholder="Digite seu Nome"
+              value={name}
+              onChange={(e) => [setName(e.target.value), setError("")]}
+            />
+            <Input
+              type="cpf"
+              placeholder="Digite seu CPF"
+              value={cpf}
+              onChange={(e) => [setCpf(e.target.value), setError("")]}
+            />
+            <Input
+              type="email"
+              placeholder="Digite seu E-mail"
+              value={email}
+              onChange={(e) => [setEmail(e.target.value), setError("")]}
+            />
+            <Input
+              type="cep"
+              placeholder="Digite seu CEP"
+              value={zip_code}
+              onChange={(e) => [setZip_code(e.target.value), setError("")]}
+            />
+            <Input
+              type="endereco"
+              placeholder="Digite seu Endereço"
+              value={address}
+              onChange={(e) => [setAddress(e.target.value), setError("")]}
+            />
+          </C.Column>
+          <C.Column>
+            <Input
+              type="Numero"
+              placeholder="Numero"
+              value={address_number}
+              onChange={(e) => [setAddress_number(e.target.value), setError("")]}
+            />
+            <Input
+              type="Bairro"
+              placeholder="Bairro"
+              value={address_district}
+              onChange={(e) => [
+                setAddress_district(e.target.value),
+                setError(""),
+              ]}
+            />
+            <Input
+              type="Cidade"
+              placeholder="Digite sua Cidade"
+              value={city}
+              onChange={(e) => [setCity(e.target.value), setError("")]}
+            />
+            <Input
+              type="Estado"
+              placeholder="Digite seu Estado"
+              value={state}
+              onChange={(e) => [setState(e.target.value), setError("")]}
+            />
+            <Input
+              type="password"
+              placeholder="Digite sua Senha"
+              value={password}
+              onChange={(e) => [setPassword(e.target.value), setError("")]}
+            />
+            <C.Subtitle>* O campo senha deve conter no mínimo 6 caracteres</C.Subtitle>
+            <Input
+              type="password"
+              placeholder="Confirme sua Senha"
+              value={password_confirmation}
+              onChange={(e) => [
+                setPassword_confirmation(e.target.value),
+                setError(""),
+              ]}
+            />
+          </C.Column>
+        </C.ContentRow>
+        <C.labelError>{error}</C.labelError>
+        <Button Text="Inscrever-se" onClick={handleSignup} />
+        <C.LabelSignin>
+          Já tem uma conta?
+          <C.Strong>
+            <Link to="/">&nbsp;Entre</Link>
+          </C.Strong>
+        </C.LabelSignin>
       </C.Content>
-      <C.labelError>{error}</C.labelError>
-      <Button Text="Inscrever-se" onClick={handleSignup} />
-      <C.LabelSignin>
-        Já tem uma conta?
-        <C.Strong>
-          <Link to="/">&nbsp;Entre</Link>
-        </C.Strong>
-      </C.LabelSignin>
     </C.Container>
   );
 };

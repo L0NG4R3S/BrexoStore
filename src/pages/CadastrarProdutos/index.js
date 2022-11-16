@@ -5,6 +5,7 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import * as C from "./styles";
 import { Link } from "react-router-dom";
+import { Logo } from "../../assets";
 
 function CadastrarProdutos() {
   const [name, setName] = useState('');
@@ -40,8 +41,9 @@ function CadastrarProdutos() {
 
   return (
     <C.Container>
-      <C.Label>Cadastre seus Produtos</C.Label>
       <C.Content>
+        <img style={{ width: 100 }} alt="logo" src={Logo} />
+        <C.Label>Cadastre seus Produtos</C.Label>
         <Input
           type="text"
           placeholder="Digite o nome"

@@ -7,6 +7,7 @@ import { register } from '../../sdk/brecho';
 import { useDispatch } from 'react-redux'
 import * as ClienteActions from '../../store/clienteSlice'
 import { Link } from "react-router-dom";
+import { Logo } from "../../assets";
 
 const CadastrarBrecho = () => {
   const dispatch = useDispatch();
@@ -52,49 +53,52 @@ const CadastrarBrecho = () => {
 
   return (
     <C.Container>
-      <C.Label>Cadastre sua loja</C.Label>
       <C.Content>
-        <C.Column>
-          <Input
-            type="name"
-            placeholder="Nome da Loja"
-            value={name}
-            onChange={(e) => [setName(e.target.value), setError("")]}
-          />
-          <Input
-            type="email"
-            placeholder="E-mail"
-            value={email}
-            onChange={(e) => [setEmail(e.target.value), setError("")]}
-          />
-        </C.Column>
-        <C.Column>
-          <Input
-            type="password"
-            placeholder="Senha para a loja"
-            value={password}
-            onChange={(e) => [setPassword(e.target.value), setError("")]}
-          />
-          <C.Subtitle>* O campo senha deve conter no mínimo 6 caracteres</C.Subtitle>
-          <Input
-            type="password"
-            placeholder="Confirme sua Senha"
-            value={password_confirmation}
-            onChange={(e) => [
-              setPassword_confirmation(e.target.value),
-              setError(""),
-            ]}
-          />
-        </C.Column>
-      </C.Content>
-      <C.labelError>{error}</C.labelError>
-      <Button Text="Cadastrar" onClick={handleCadastrarBrecho} />
+        <img style={{ width: 100 }} alt="logo" src={Logo} />
+        <C.Label>Cadastre sua loja</C.Label>
+        <C.ContentRow>
+          <C.Column>
+            <Input
+              type="name"
+              placeholder="Nome da Loja"
+              value={name}
+              onChange={(e) => [setName(e.target.value), setError("")]}
+            />
+            <Input
+              type="email"
+              placeholder="E-mail"
+              value={email}
+              onChange={(e) => [setEmail(e.target.value), setError("")]}
+            />
+          </C.Column>
+          <C.Column>
+            <Input
+              type="password"
+              placeholder="Senha para a loja"
+              value={password}
+              onChange={(e) => [setPassword(e.target.value), setError("")]}
+            />
+            <C.Subtitle>* O campo senha deve conter no mínimo 6 caracteres</C.Subtitle>
+            <Input
+              type="password"
+              placeholder="Confirme sua Senha"
+              value={password_confirmation}
+              onChange={(e) => [
+                setPassword_confirmation(e.target.value),
+                setError(""),
+              ]}
+            />
+          </C.Column>
+        </C.ContentRow>
+        <C.labelError>{error}</C.labelError>
+        <Button Text="Cadastrar" onClick={handleCadastrarBrecho} />
 
-      <C.LabelSignup>
-        <C.Strong>
-          <Link to="/home">Voltar a Home</Link>
-        </C.Strong>
-      </C.LabelSignup>
+        <C.LabelSignup>
+          <C.Strong>
+            <Link to="/home">Voltar a Home</Link>
+          </C.Strong>
+        </C.LabelSignup>
+      </C.Content>
     </C.Container>
   );
 };

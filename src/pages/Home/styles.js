@@ -5,6 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 10px;
   height: 100vh;
+  background-color: #ACFCE9;
 `;
 
 export const Content = styled.div`
@@ -21,7 +22,7 @@ export const NavBar = styled.div`
   gap: 10px;
   height: 100px;
   box-shadow: 0 1px 2px #0003;
-  background-color: white;
+  background-color: #82E0AA;
   width: 100%;
   align-items: center;
   flex-direction: row;
@@ -39,12 +40,11 @@ export const NavBeggining = styled.div`
 export const Label = styled.label`
   font-size: 18px;
   font-weight: 600;
-  color: #676767;
 `;
 
-export const LabelSignup = styled.label`
-  font-size: 16px;
-  color: #676767;
+export const LabelSignup = styled.p`
+  font-size: 19px;
+  color: white;
   padding: 0px 30px;
 `;
 

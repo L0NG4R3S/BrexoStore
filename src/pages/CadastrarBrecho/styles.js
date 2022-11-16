@@ -8,6 +8,7 @@ export const Container = styled.div`
   gap: 10px;
   height: 100vh;
   padding-bottom: 100px;
+  background-color: #82E0AA;
 `;
 
 export const Subtitle = styled.p`
@@ -18,13 +19,23 @@ export const Subtitle = styled.p`
 export const Content = styled.div`
   gap: 15px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   box-shadow: 0 1px 2px #0003;
   background-color: white;
   max-width: 750px;
   padding: 50px;
   border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ContentRow = styled.div`
+  gap: 15px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
 `;
 
 export const Column = styled.div`

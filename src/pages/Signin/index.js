@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from '../../sdk/cliente';
 import { useDispatch } from 'react-redux'
 import * as ClienteActions from '../../store/clienteSlice'
+import { Logo } from '../../assets'
+
 
 const Signin = () => {
   const dispatch = useDispatch();
@@ -37,8 +39,9 @@ const Signin = () => {
 
   return (
     <C.Container>
-      <C.Label>Login</C.Label>
       <C.Content>
+        <img style={{ width: 100}} alt="logo" src={Logo} />
+        <C.Label>Entre com seu usuário e senha</C.Label>
         <Input
           type="email"
           placeholder="Digite seu E-mail"

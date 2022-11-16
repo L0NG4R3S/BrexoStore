@@ -3,9 +3,10 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from '../../sdk/brecho';
-import { useDispatch } from 'react-redux'
-import * as ClienteActions from '../../store/clienteSlice'
+import { login } from "../../sdk/brecho";
+import { useDispatch } from "react-redux";
+import * as ClienteActions from "../../store/clienteSlice";
+import { Logo } from "../../assets";
 
 const SigninWithBrexo = () => {
   const dispatch = useDispatch();
@@ -25,10 +26,10 @@ const SigninWithBrexo = () => {
     try {
       result = await login({ email, password: senha });
 
-      if(!!result?.session){
+      if (!!result?.session) {
         alert("Login realizado com sucesso!");
-        dispatch(ClienteActions.setUserType({userType: 'store'}))
-        navigate('/home')
+        dispatch(ClienteActions.setUserType({ userType: "store" }));
+        navigate("/home");
       }
     } catch {
       setError("Erro! Usuário ou senha incorretos.");
@@ -37,8 +38,9 @@ const SigninWithBrexo = () => {
 
   return (
     <C.Container>
-      <C.Label>Logue com sua loja</C.Label>
       <C.Content>
+        <img style={{ width: 100 }} alt="logo" src={Logo} />
+        <C.Label>Logue com sua loja</C.Label>
         <Input
           type="email"
           placeholder="Digite seu E-mail"
