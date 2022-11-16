@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-undef */
 import { useState} from 'react';
-import { register } from '../sdk/brecho';
+import { register } from "../../sdk/brecho";
 import Input from './components/Input';
 import Button from './components/Button';
 import * as C from "./styles";

@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import './styles/App.css';
 import CadastrarCliente from "./CadastrarCliente";
-import CadastrarBrecho from "./pages/CadastraBrecho";
-import Home from "./Home";
+import CadastrarBrecho from "./pages/CadastrarBrecho/CadastrarBrecho";
+import Home from "./pages/Home/Home";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 
