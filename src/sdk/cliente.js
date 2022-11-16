@@ -23,7 +23,7 @@ export const register = ({
   address_number,
   address_district,
   city,
-  state,
+  state
 }) => {
   return post("customer_api/customer", {
     name,
@@ -36,7 +36,7 @@ export const register = ({
     address_number,
     address_district,
     city,
-    state,
+    state
   })
     .then(({ data }) => {
       setAxiosAuthorization(data.session.token);
