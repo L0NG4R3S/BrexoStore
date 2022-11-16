@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { register } from '../../sdk/cliente';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import * as C from "./styles";
 
 
 function CadastrarCliente() {
