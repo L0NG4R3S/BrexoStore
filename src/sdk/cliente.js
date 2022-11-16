@@ -40,8 +40,10 @@ export const register = ({
     state
   })
     .then(({ data }) => {
-      setAxiosAuthorization(data.session.token);
-      console.log("TOKEN REGISTER", data.session.token);
+      if(data?.session?.token){
+        setAxiosAuthorization(data.session.token);
+        console.log("TOKEN REGISTER", data.session.token);
+      }
       return data;
     })
     .catch((err) => {

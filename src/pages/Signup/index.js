@@ -9,23 +9,22 @@ import * as ClienteActions from '../../store/clienteSlice'
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState("Cliente Teste");
-  const [email, setEmail] = useState("email@ee.com");
-  const [address, setAddress] = useState("Endereco");
-  const [address_number, setAddress_number] = useState("20");
-  const [address_district, setAddress_district] = useState("Bairro");
-  const [city, setCity] = useState("Curitiba");
-  const [state, setState] = useState("Parana");
-  const [password, setPassword] = useState("12345");
-  const [password_confirmation, setPassword_confirmation] = useState("12345");
-  const [cpf, setCpf] = useState("111.333.444.02");
-  const [zip_code, setZip_code] = useState("12345-934");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [address_number, setAddress_number] = useState("");
+  const [address_district, setAddress_district] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [password, setPassword] = useState("");
+  const [password_confirmation, setPassword_confirmation] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [zip_code, setZip_code] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // const { signup } = useAuth();
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     if (
       !email |
       !password |
@@ -47,9 +46,7 @@ const Signup = () => {
       return;
     }
 
-    // const res = signup(email, password);
-
-    const result = register({
+    const result = await register({
       name,
       email,
       password,
@@ -63,9 +60,10 @@ const Signup = () => {
       state,
     })
 
-    console.log('result', result)
-
-    if(result){
+    if(result.errors){
+      console.log('result.errors', result.errors)
+      setError(result.message);
+    } else {
       dispatch(ClienteActions.register({
         name,
         email,
@@ -80,14 +78,10 @@ const Signup = () => {
         state,
       }))
 
-      // if (result) {
-      //   setError(result);
-      //   return;
-      // }
 
       alert("Usuário cadatrado com sucesso!");
-    } else {
-      setError('Erro! Tente novamente');
+
+      navigate('/') // mudar para navegar para Home
     }
   };
 
@@ -161,6 +155,7 @@ const Signup = () => {
             value={password}
             onChange={(e) => [setPassword(e.target.value), setError("")]}
           />
+          <C.Subtitle>* O campo senha deve conter no mínimo 6 caracteres</C.Subtitle>
           <Input
             type="password"
             placeholder="Confirme sua Senha"

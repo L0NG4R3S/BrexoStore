@@ -10,6 +10,11 @@ export const Container = styled.div`
   padding-bottom: 100px;
 `;
 
+export const Subtitle = styled.p`
+  font-size: 12px;
+  text-align: flex-start;
+`;
+
 export const Content = styled.div`
   gap: 15px;
   display: flex;
@@ -55,3 +60,4 @@ export const Strong = styled.strong`
     color: #676767;
   }
 `;
+

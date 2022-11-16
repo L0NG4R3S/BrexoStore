@@ -4,8 +4,6 @@ import Input from "../../components/Input";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from '../../sdk/cliente';
-import { useDispatch } from 'react-redux'
-import * as ClienteActions from '../../store/clienteSlice'
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -14,25 +12,28 @@ const Signin = () => {
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    let result;
     if (!email | !senha) {
       setError("Preencha todos os campos");
       return;
     }
 
-    const res = login({ email, password: senha });
-
-    // if (res) {
-    //   setError(res);
-    //   return;
-    // }
-
-    // navigate("/home");
+    try {
+      result = await login({ email, password: senha });
+    } catch {
+      if(!!result?.session){
+        alert("Login realizado com sucesso!");
+        navigate('/') // mudar para navegar para Home
+      } else {
+        setError("Erro! Usuário ou senha incorretos.");
+      }
+    }
   };
 
   return (
     <C.Container>
-      <C.Label>SISTEMA DE LOGIN</C.Label>
+      <C.Label>Login</C.Label>
       <C.Content>
         <Input
           type="email"
