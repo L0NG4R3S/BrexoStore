@@ -27,7 +27,7 @@ function CadastrarBrecho() {
       <C.Content>
         <Input
           type="text"
-          placeholder="Digite seu Nome"
+          placeholder="Digite o Nome"
           value={name}
           onChange={(e) => [setName(e.target.value)]}
         />
