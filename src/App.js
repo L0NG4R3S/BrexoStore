@@ -6,9 +6,8 @@ import {
   Route,
 } from "react-router-dom";
 import './styles/App.css';
-import CadastrarCliente from "./CadastrarCliente";
-import CadastrarBrecho from "./pages/CadastrarBrecho/CadastrarBrecho";
-import Home from "./pages/Home/Home";
+import CadastrarCliente from "./pages/CadastrarCliente";
+import CadastrarBrecho from "./pages/CadastrarBrecho";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 
