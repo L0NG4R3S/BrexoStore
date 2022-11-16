@@ -10,10 +10,13 @@ import CadastrarCliente from "./pages/CadastrarCliente";
 import CadastrarBrecho from "./pages/CadastrarBrecho";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
+import { Provider } from 'react-redux'
+import store from './store'
 
 function App() {
   return (
     <div className="App">
+      <Provider store={store}>
         <Router>
           <div className="container">
             <Routes>
@@ -21,11 +24,10 @@ function App() {
               <Route path="/cadastrarCliente" element={<CadastrarCliente />} />
               <Route path="/cadastrarBrecho" element={<CadastrarBrecho />} />
               <Route exact path="/signup" element={<Signup />} />
-             
-      
             </Routes>
-          </div>3000
+          </div>
         </Router>
+      </Provider>
     </div>
   );
 }
