@@ -3,10 +3,11 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { login } from '../../sdk/cliente';
+import { useDispatch } from 'react-redux'
+import * as ClienteActions from '../../store/clienteSlice'
 
 const Signin = () => {
-  const { signin } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -19,14 +20,14 @@ const Signin = () => {
       return;
     }
 
-    const res = signin(email, senha);
+    const res = login({ email, password: senha });
 
-    if (res) {
-      setError(res);
-      return;
-    }
+    // if (res) {
+    //   setError(res);
+    //   return;
+    // }
 
-    navigate("/home");
+    // navigate("/home");
   };
 
   return (

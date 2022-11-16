@@ -8,6 +8,7 @@ export const login = ({ email, password }) => {
       return data;
     })
     .catch((err) => {
+      console.log('Login error', err)
       throw new Error(err.message);
     });
 };
