@@ -4,7 +4,7 @@ export const counterSlice = createSlice({
   name: 'counter',
   initialState: {
     user: null,
-
+    productInEdition: null,
     userType: 'customer' // customer ou store
   },
   reducers: {
@@ -15,10 +15,13 @@ export const counterSlice = createSlice({
     setUserType: (state, action) => {
       state.userType = action?.payload?.userType
     },
+    setProductInEdition: (state, action) => {
+      state.productInEdition = action?.payload?.product
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { saveUser, setUserType } = counterSlice.actions
+export const { saveUser, setUserType, setProductInEdition } = counterSlice.actions
 
 export default counterSlice.reducer

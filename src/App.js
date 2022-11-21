@@ -14,6 +14,8 @@ import store from './store'
 import CadastrarProdutos from "./pages/CadastrarProdutos"
 import Home from "./pages/Home"
 import SigninWithBrecho from "./pages/SigninWithBrecho"
+import EditarProduto from "./pages/EditarProduto"
+
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
               <Route path="/cadastrarBrecho" element={<CadastrarBrecho />} />
               <Route exact path="/signup" element={<Signup />} />
               <Route exact path="/cadastrarProdutos" element={<CadastrarProdutos />} />
+              <Route exact path="/editarProduto" element={<EditarProduto />} />
               <Route path="/signinWithBrecho" element={<SigninWithBrecho />} />
 
             </Routes>

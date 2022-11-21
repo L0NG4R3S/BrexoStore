@@ -18,6 +18,10 @@ export function post(url, data) {
   return axiosInstance.post(url, data);
 }
 
+export function put(url, data) {
+  return axiosInstance.put(url, data);
+}
+
 export function del(url) {
   return axiosInstance.delete(url);
 }
