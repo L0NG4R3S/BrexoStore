@@ -6,20 +6,15 @@ import { Logo } from "../../assets";
 
 const Home = () => {
   const userType = useSelector((state) => state.cliente.userType)
-  console.log('userType', userType)
+  const user = useSelector((state) => state.cliente.user)
+  console.log('userType', userType, user)
 
   return (
     <C.Container>
       <C.NavBar>
         <img style={{ marginLeft: 30, width: 110 }} alt="logo" src={Logo} />
         <C.NavBeggining>
-          {userType === 'customer' ? (
-            <C.LabelSignup>
-              <C.Strong>
-                <Link style={{ color: '#FFFB91' }} to="/cadastrarBrecho">Cadastrar minha Loja</Link>
-              </C.Strong>
-            </C.LabelSignup>
-          ) : (
+          {userType === 'customer' ? null : (
             <C.LabelSignup>
               <C.Strong>
                 <Link style={{ color: '#FFFB91' }} to="/cadastrarProdutos">Cadastrar produto</Link>

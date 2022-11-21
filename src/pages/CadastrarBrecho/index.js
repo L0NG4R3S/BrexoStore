@@ -3,18 +3,26 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import * as C from "./styles";
 import { useNavigate } from "react-router-dom";
-import { register } from '../../sdk/brecho';
+import { register, registerUser } from '../../sdk/brecho';
 import { useDispatch } from 'react-redux'
 import * as ClienteActions from '../../store/clienteSlice'
 import { Link } from "react-router-dom";
 import { Logo } from "../../assets";
+import { MaskInput } from  "./styles";
+
 
 const CadastrarBrecho = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPassword_confirmation] = useState("");
+  const [address, setAddress] = useState("");
+  const [address_number, setAddress_number] = useState("");
+  const [address_district, setAddress_district] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -33,7 +41,7 @@ const CadastrarBrecho = () => {
       return;
     }
 
-    const result = await register({
+    const result = await registerUser({
       name,
       email,
       password,
@@ -44,10 +52,27 @@ const CadastrarBrecho = () => {
       console.log('result.errors', result.errors)
       setError(result.message);
     } else {
-      dispatch(ClienteActions.setUserType({ userType: 'store' }))
-      alert("Loja cadastrada com sucesso!");
+      const resultRegisterStore = await register({
+        name,
+        email,
+        phone,
+        address,
+        address_number,
+        address_district,
+        city,
+        state
+      })
 
-      navigate('/home')
+      if(resultRegisterStore.errors){
+        console.log('result.errors', result.errors)
+        setError(result.message);
+      } else {
+        dispatch(ClienteActions.setUserType({ userType: 'store' }))
+        alert("Loja cadastrada com sucesso!", resultRegisterStore);
+        dispatch(ClienteActions.saveUser({ user: result?.session?.user }));
+
+        navigate('/home')
+      }
     }
   };
 
@@ -70,8 +95,49 @@ const CadastrarBrecho = () => {
               value={email}
               onChange={(e) => [setEmail(e.target.value), setError("")]}
             />
+             <MaskInput
+              type="phone"
+              mask="(99) 99999-9999"
+              placeholder="Digite seu Telefone"
+              value={phone}
+              onChange={(e) => [setPhone(e.target.value), setError("")]}
+            />
+            <Input
+              type="endereco"
+              placeholder="Digite seu Endereço"
+              value={address}
+              onChange={(e) => [setAddress(e.target.value), setError("")]}
+            />
+             <MaskInput
+              type="Numero"
+              mask="9999"
+              placeholder="Número"
+              value={address_number}
+              onChange={(e) => [setAddress_number(e.target.value), setError("")]}
+            />
+            <Input
+              type="Bairro"
+              placeholder="Bairro"
+              value={address_district}
+              onChange={(e) => [
+                setAddress_district(e.target.value),
+                setError(""),
+              ]}
+            />
           </C.Column>
           <C.Column>
+            <Input
+              type="Cidade"
+              placeholder="Digite sua Cidade"
+              value={city}
+              onChange={(e) => [setCity(e.target.value), setError("")]}
+            />
+            <Input
+              type="Estado"
+              placeholder="Digite seu Estado"
+              value={state}
+              onChange={(e) => [setState(e.target.value), setError("")]}
+            />
             <Input
               type="password"
               placeholder="Senha para a loja"

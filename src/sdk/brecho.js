@@ -12,11 +12,55 @@ export const login = ({ email, password }) => {
     });
 };
 
-export const register = ({ name, email, password, password_confirmation }) => {
-  return post('api/user', { name, email, password, password_confirmation })
+export const registerUser = ({
+  name,
+  email,
+  password,
+  password_confirmation,
+}) => {
+  return post("api/user", {
+    name,
+    email,
+    password,
+    password_confirmation,
+  })
     .then(({ data }) => {
-      setAxiosAuthorization(data.session.token)
-      console.log('TOKEN REGISTER', data.session.token)
+      if(data?.session?.token){
+        setAxiosAuthorization(data.session.token);
+        console.log("TOKEN REGISTER USER", data.session.token);
+      }
+      return data;
+    })
+    .catch((err) => {
+      throw new Error(err.message);
+    });
+};
+
+export const register = ({
+  name,
+  email,
+  phone,
+  address,
+  address_number,
+  address_district,
+  city,
+  state
+}) => {
+  return post("api/store", {
+    name,
+    email,
+    phone,
+    address,
+    address_number,
+    address_district,
+    city,
+    state
+  })
+    .then(({ data }) => {
+      if(data?.session?.token){
+        setAxiosAuthorization(data.session.token);
+        console.log("TOKEN REGISTER", data.session.token);
+      }
       return data;
     })
     .catch((err) => {

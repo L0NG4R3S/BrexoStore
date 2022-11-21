@@ -63,6 +63,7 @@ export const labelError = styled.label`
   font-size: 14px;
   color: red;
 `;
+
 export const MaskInput = styled(InputMask)`
   outline: none;
   padding: 16px 20px;
@@ -73,7 +74,6 @@ export const MaskInput = styled(InputMask)`
   background-color: #f0f2f5;
   border: none;
 `;
-
 
 export const Strong = styled.strong`
   cursor: pointer;

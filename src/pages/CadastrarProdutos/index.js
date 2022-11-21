@@ -6,14 +6,15 @@ import Button from '../../components/Button';
 import * as C from "./styles";
 import { Link } from "react-router-dom";
 import { Logo } from "../../assets";
-import {MaskInput} from  "../Signup/styles";
+import { useSelector } from 'react-redux'
 
 function CadastrarProdutos() {
+  const user = useSelector((state) => state.cliente.user)
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   // const [type, setType] = useState('');
   const [value, setValue] = useState(''); 
-  const [storeId, setStoreId] = useState(''); 
+  // const [storeId, setStoreId] = useState(''); 
   const [error, setError] = useState(''); 
 
 
@@ -23,7 +24,7 @@ function CadastrarProdutos() {
       description: description,
       type: 1, // parseInt(type),
       value: parseFloat(value),
-      store_id: parseInt(storeId)
+      store_id: user?.id
     })
 
     console.log('RESULT', result)
@@ -35,7 +36,7 @@ function CadastrarProdutos() {
       setName('');
       setDescription('');
       setValue('');
-      setStoreId('');
+      // setStoreId('');
       setError('');
     }
   }
@@ -66,12 +67,12 @@ function CadastrarProdutos() {
           value={value}
           onChange={(e) => [setValue(e.target.value)]}
         />
-        <Input
+        {/* <Input
           type="number"
           placeholder="Código da sua loja"
           value={storeId}
           onChange={(e) => [setStoreId(e.target.value)]}
-        />
+        /> */}
 
         {/* <Input
           type="text"

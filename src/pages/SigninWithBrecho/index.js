@@ -27,8 +27,9 @@ const SigninWithBrecho = () => {
       result = await login({ email, password: senha });
 
       if (!!result?.session) {
-        alert("Login realizado com sucesso!");
+        alert("Login realizado com sucesso!", result);
         dispatch(ClienteActions.setUserType({ userType: "store" }));
+        dispatch(ClienteActions.saveUser({ user: result?.session?.user }));
         navigate("/home");
       }
     } catch {
@@ -55,6 +56,15 @@ const SigninWithBrecho = () => {
         />
         <C.labelError>{error}</C.labelError>
         <Button Text="Entrar" onClick={handleLogin} />
+        <C.LabelSignup>
+          Não tem uma loja?
+          <C.Strong>
+            <Link to="/cadastrarBrecho">&nbsp;Cadastre sua loja</Link>
+          </C.Strong>
+        </C.LabelSignup>
+        <C.LabelSignup>
+          ou
+        </C.LabelSignup>
         <C.LabelSignup>
           <C.Strong>
             <Link to="/">Voltar ao login tradicional</Link>

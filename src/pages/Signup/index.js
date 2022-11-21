@@ -69,19 +69,6 @@ const Signup = () => {
       console.log('result.errors', result.errors)
       setError(result.message);
     } else {
-      dispatch(ClienteActions.register({
-        name,
-        email,
-        password,
-        password_confirmation,
-        cpf,
-        zip_code,
-        address,
-        address_number,
-        address_district,
-        city,
-        state,
-      }))
 
       dispatch(ClienteActions.setUserType({ userType: 'customer' }))
 
