@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import * as C from "./styles";
+import {MaskInput} from "../Signup/styles"
 import { Link, useNavigate } from "react-router-dom";
 import { login } from '../../sdk/cliente';
 import { useDispatch } from 'react-redux'

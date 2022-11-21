@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import InputMask from 'react-input-mask';
 
 export const Container = styled.div`
   display: flex;
@@ -62,6 +63,17 @@ export const labelError = styled.label`
   font-size: 14px;
   color: red;
 `;
+export const MaskInput = styled(InputMask)`
+  outline: none;
+  padding: 16px 20px;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
+
+  background-color: #f0f2f5;
+  border: none;
+`;
+
 
 export const Strong = styled.strong`
   cursor: pointer;

@@ -1,12 +1,16 @@
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable no-undef */
 import React, { useState } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import * as C from "./styles";
+import {MaskInput} from  "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { register } from '../../sdk/cliente';
 import { useDispatch } from 'react-redux'
 import * as ClienteActions from '../../store/clienteSlice'
 import { Logo } from '../../assets'
+
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -102,8 +106,9 @@ const Signup = () => {
               value={name}
               onChange={(e) => [setName(e.target.value), setError("")]}
             />
-            <Input
+            <MaskInput
               type="cpf"
+              mask="999.999.999-99"
               placeholder="Digite seu CPF"
               value={cpf}
               onChange={(e) => [setCpf(e.target.value), setError("")]}
@@ -114,12 +119,14 @@ const Signup = () => {
               value={email}
               onChange={(e) => [setEmail(e.target.value), setError("")]}
             />
-            <Input
+            <MaskInput
               type="cep"
+              mask="99999-999"
               placeholder="Digite seu CEP"
               value={zip_code}
               onChange={(e) => [setZip_code(e.target.value), setError("")]}
             />
+
             <Input
               type="endereco"
               placeholder="Digite seu Endereço"
@@ -128,9 +135,10 @@ const Signup = () => {
             />
           </C.Column>
           <C.Column>
-            <Input
+            <MaskInput
               type="Numero"
-              placeholder="Numero"
+              mask="9999"
+              placeholder="Número"
               value={address_number}
               onChange={(e) => [setAddress_number(e.target.value), setError("")]}
             />

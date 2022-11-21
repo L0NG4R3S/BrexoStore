@@ -6,6 +6,7 @@ import Button from '../../components/Button';
 import * as C from "./styles";
 import { Link } from "react-router-dom";
 import { Logo } from "../../assets";
+import {MaskInput} from  "../Signup/styles";
 
 function CadastrarProdutos() {
   const [name, setName] = useState('');
@@ -61,13 +62,13 @@ function CadastrarProdutos() {
        
         <Input
           type="number"
-          placeholder="Digite o valor"
+          placeholder="Valor"
           value={value}
           onChange={(e) => [setValue(e.target.value)]}
         />
         <Input
           type="number"
-          placeholder="Digite o código da sua loja"
+          placeholder="Código da sua loja"
           value={storeId}
           onChange={(e) => [setStoreId(e.target.value)]}
         />

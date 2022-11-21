@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import * as ClienteActions from "../../store/clienteSlice";
 import { Logo } from "../../assets";
 
-const SigninWithBrexo = () => {
+const SigninWithBrecho = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -65,4 +65,4 @@ const SigninWithBrexo = () => {
   );
 };
 
-export default SigninWithBrexo;
+export default SigninWithBrecho;
