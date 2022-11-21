@@ -5,6 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 10px;
   background-color: #ACFCE9;
+  min-height: 100vh;
 `;
 
 export const Content = styled.div`
@@ -35,6 +36,11 @@ export const NavBeggining = styled.div`
 
 export const Label = styled.label`
   font-size: 18px;
+`;
+
+export const BoldLabel = styled.label`
+  font-size: 18px;
+  font-weight: bold;
 `;
 
 export const Title = styled.label`
@@ -70,8 +76,17 @@ export const ListContent = styled.div`
   box-shadow: 0 1px 2px #0003;
   background-color: white;
   padding: 50px;
+  min-height: 100vh;
   border-radius: 5px;
   align-items: center;
+`;
+
+export const ProductButtonsRow = styled.div`
+  flex-direction: row;
+  width: 100%;
+  padding: 10px 0px;
+  bottom: 0;
+  justify-content: space-evenly;
 `;
 
 export const ProductView = styled.div`
@@ -82,6 +97,6 @@ export const ProductView = styled.div`
   height: 100%;
   box-shadow: 0 1px 2px #0003;
   background-color: #AFFFA6;
-  padding: 50px;
+  padding-top: 50px;
   border-radius: 5px;
 `;

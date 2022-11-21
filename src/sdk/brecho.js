@@ -1,4 +1,4 @@
-import { post, setAxiosAuthorization, get } from './api';
+import { post, setAxiosAuthorization, get, del } from './api';
 
 export const login = ({ email, password }) => {
   return post('api/session', { email, password })
@@ -25,6 +25,18 @@ export const buscarProdutos = () => {
     });
 };
 
+export const deletarProduto = ({id}) => {
+  return del(`api/product/${id}`)
+    .then(({ data }) => {
+      console.log('deletarProduto', data)
+      return data;
+    })
+    .catch((err) => {
+      console.log('deletarProduto error', err)
+
+      throw new Error(err.message);
+    });
+};
 
 export const registerUser = ({
   name,

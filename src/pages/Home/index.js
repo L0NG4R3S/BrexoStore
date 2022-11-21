@@ -3,7 +3,8 @@ import * as C from "./styles";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Logo } from "../../assets";
-import { buscarProdutos } from '../../sdk/brecho'
+import { buscarProdutos, deletarProduto } from '../../sdk/brecho'
+import Button from '../../components/Button';
 
 const Home = () => {
   const [produtos, setProdutos] = useState([])
@@ -20,11 +21,24 @@ const Home = () => {
     }
   }, [userType]);
 
-  const listItems = produtos.map((d) => 
+  const onDelete = async ({ id }) => {
+    await deletarProduto({ id })
+    alert("Produto removido com sucesso!");
+    await getProdutos()
+  }
+
+  const onEdit = () => {}
+
+
+  const listItems = produtos.map((d) => // filtrar apenas produto do brecho
     <C.ProductView key={d.id}>
-      <C.Label>Nome do produto: {d.name}</C.Label>
+      <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
       <C.Label>Descrição do produto: {d.description}</C.Label>
       <C.Label>Preço do produto: {d.value}</C.Label>
+      <C.ProductButtonsRow>
+        <Button Text="Excluir" color="red" onClick={() => onDelete({ id: d.id })} />
+        <Button Text="Editar" onClick={onEdit} />
+      </C.ProductButtonsRow>
     </C.ProductView>
   );
 
