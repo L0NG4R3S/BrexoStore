@@ -4,17 +4,13 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 100vh;
   background-color: #ACFCE9;
 `;
 
 export const Content = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
-  gap: 10px;
-  height: 100vh;
 `;
 
 export const NavBar = styled.div`
@@ -39,7 +35,11 @@ export const NavBeggining = styled.div`
 
 export const Label = styled.label`
   font-size: 18px;
-  font-weight: 600;
+`;
+
+export const Title = styled.label`
+  font-size: 22px;
+  font-weight: bold;
 `;
 
 export const LabelSignup = styled.p`
@@ -55,9 +55,33 @@ export const labelError = styled.label`
 
 export const Strong = styled.strong`
   cursor: pointer;
-
   a {
     text-decoration: none;
     color: #676767;
   }
+`;
+
+export const ListContent = styled.div`
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: 100%;
+  box-shadow: 0 1px 2px #0003;
+  background-color: white;
+  padding: 50px;
+  border-radius: 5px;
+  align-items: center;
+`;
+
+export const ProductView = styled.div`
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: 100%;
+  box-shadow: 0 1px 2px #0003;
+  background-color: #AFFFA6;
+  padding: 50px;
+  border-radius: 5px;
 `;

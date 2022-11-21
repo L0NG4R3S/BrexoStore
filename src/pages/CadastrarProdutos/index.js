@@ -12,9 +12,7 @@ function CadastrarProdutos() {
   const user = useSelector((state) => state.cliente.user)
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  // const [type, setType] = useState('');
   const [value, setValue] = useState(''); 
-  // const [storeId, setStoreId] = useState(''); 
   const [error, setError] = useState(''); 
 
 
@@ -24,7 +22,7 @@ function CadastrarProdutos() {
       description: description,
       type: 1, // parseInt(type),
       value: parseFloat(value),
-      store_id: user?.id
+      store_id: user?.id // mudar pra pegar id do brecho
     })
 
     console.log('RESULT', result)
@@ -36,7 +34,6 @@ function CadastrarProdutos() {
       setName('');
       setDescription('');
       setValue('');
-      // setStoreId('');
       setError('');
     }
   }

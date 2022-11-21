@@ -49,7 +49,7 @@ const CadastrarBrecho = () => {
     })
 
     if(result.errors){
-      console.log('result.errors', result.errors)
+      console.log('result.errors 1', result.errors)
       setError(result.message);
     } else {
       const resultRegisterStore = await register({
@@ -64,7 +64,7 @@ const CadastrarBrecho = () => {
       })
 
       if(resultRegisterStore.errors){
-        console.log('result.errors', result.errors)
+        console.log('result.errors 2', result.errors)
         setError(result.message);
       } else {
         dispatch(ClienteActions.setUserType({ userType: 'store' }))

@@ -1,16 +1,30 @@
-import { post, setAxiosAuthorization } from './api';
+import { post, setAxiosAuthorization, get } from './api';
 
 export const login = ({ email, password }) => {
   return post('api/session', { email, password })
     .then(({ data }) => {
-      setAxiosAuthorization(data.session.token)
-      console.log('TOKEN LOGIN BREXO', data.session.token)
+      setAxiosAuthorization(data?.session?.token)
+      console.log('TOKEN LOGIN BREXO', data?.session?.token)
       return data;
     })
     .catch((err) => {
       throw new Error(err.message);
     });
 };
+
+export const buscarProdutos = () => {
+  return get('api/product')
+    .then(({ data }) => {
+      console.log('buscarProdutos', data)
+      return data;
+    })
+    .catch((err) => {
+      console.log('buscarProdutos error', err)
+
+      throw new Error(err.message);
+    });
+};
+
 
 export const registerUser = ({
   name,
@@ -26,8 +40,8 @@ export const registerUser = ({
   })
     .then(({ data }) => {
       if(data?.session?.token){
-        setAxiosAuthorization(data.session.token);
-        console.log("TOKEN REGISTER USER", data.session.token);
+        setAxiosAuthorization(data?.session?.token);
+        console.log("TOKEN REGISTER USER", data?.session?.token);
       }
       return data;
     })
@@ -58,8 +72,8 @@ export const register = ({
   })
     .then(({ data }) => {
       if(data?.session?.token){
-        setAxiosAuthorization(data.session.token);
-        console.log("TOKEN REGISTER", data.session.token);
+        setAxiosAuthorization(data?.session?.token);
+        console.log("TOKEN REGISTER", data?.session?.token);
       }
       return data;
     })

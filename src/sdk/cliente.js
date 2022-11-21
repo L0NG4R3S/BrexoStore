@@ -3,8 +3,8 @@ import { post, setAxiosAuthorization } from "./api";
 export const login = ({ email, password }) => {
   return post("customer_api/session", { email, password })
     .then(({ data }) => {
-      setAxiosAuthorization(data.session.token);
-      console.log("TOKEN LOGIN", data.session.token);
+      setAxiosAuthorization(data?.session?.token);
+      console.log("TOKEN LOGIN", data?.session?.token);
       return data;
     })
     .catch((err) => {
@@ -41,8 +41,8 @@ export const register = ({
   })
     .then(({ data }) => {
       if(data?.session?.token){
-        setAxiosAuthorization(data.session.token);
-        console.log("TOKEN REGISTER", data.session.token);
+        setAxiosAuthorization(data?.session?.token);
+        console.log("TOKEN REGISTER", data?.session?.token);
       }
       return data;
     })
