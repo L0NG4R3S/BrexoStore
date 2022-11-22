@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -5,11 +6,15 @@ import {
   Route,
 } from "react-router-dom";
 import './styles/App.css';
-import CadastrarCliente from "./CadastrarCliente";
-import CadastrarBrecho from "./CadastrarBrecho";
-import Home from "./Home";
+import CadastrarBrecho from "./pages/CadastrarBrecho";
+import Signin from "./pages/Signin";
+import Signup from "./pages/Signup";
 import { Provider } from 'react-redux'
 import store from './store'
+import CadastrarProdutos from "./pages/CadastrarProdutos"
+import Home from "./pages/Home"
+import SigninWithBrecho from "./pages/SigninWithBrecho"
+import EditarProduto from "./pages/EditarProduto"
 
 
 function App() {
@@ -19,9 +24,14 @@ function App() {
         <Router>
           <div className="container">
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/cadastrarCliente" element={<CadastrarCliente />} />
+              <Route path="/" element={<Signin />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/cadastrarBrecho" element={<CadastrarBrecho />} />
+              <Route exact path="/signup" element={<Signup />} />
+              <Route exact path="/cadastrarProdutos" element={<CadastrarProdutos />} />
+              <Route exact path="/editarProduto" element={<EditarProduto />} />
+              <Route path="/signinWithBrecho" element={<SigninWithBrecho />} />
+
             </Routes>
           </div>
         </Router>
