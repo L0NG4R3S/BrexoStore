@@ -77,7 +77,6 @@ function EditarProduto() {
           value={storeId}
           onChange={(e) => [setStoreId(e.target.value)]}
         /> */}
-
         {/* <Input
           type="text"
           placeholder="Digite o tipo de produto"
