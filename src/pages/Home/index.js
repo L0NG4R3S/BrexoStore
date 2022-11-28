@@ -7,11 +7,13 @@ import { buscarProdutos, deletarProduto } from "../../sdk/brecho";
 import { buscarProdutosParaCliente } from "../../sdk/cliente";
 import Button from "../../components/Button";
 import * as ClienteActions from "../../store/clienteSlice";
+import Input from "../../components/Input";
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [produtos, setProdutos] = useState([]);
+  const [comment, setComment] = useState([]);
   const userType = useSelector((state) => state.cliente.userType);
 
   const getProdutos = async () => {
@@ -46,7 +48,7 @@ const Home = () => {
       <C.ProductView key={d.id}>
         <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
         <C.Label>Descrição do produto: {d.description}</C.Label>
-        <C.Label>Preço do produto: {d.value}</C.Label>
+        <C.Label>Preço do produto: R${d.value}</C.Label>
         <C.ProductButtonsRow>
           <Button
             Text="Excluir"
@@ -66,7 +68,27 @@ const Home = () => {
       <C.ProductView key={d.id}>
         <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
         <C.Label>Descrição do produto: {d.description}</C.Label>
-        <C.Label>Preço do produto: {d.value}</C.Label>
+        <C.Label>Preço do produto: R${d.value}</C.Label>
+        <Button
+          style={{ width: "20%", alignSelf: "center" }}
+          Text="Comprar"
+          color="green"
+          onClick={() => onDelete({ id: d.id })}
+        />
+        <C.ProductButtonsRow>
+          <Input
+            style={{ width: "60%" }}
+            type="text"
+            placeholder="Digite seu comentário"
+            value={comment}
+            onChange={(e) => [setComment(e.target.value)]}
+          />
+          <Button
+            style={{ width: "20%" }}
+            Text="Comentar"
+            onClick={() => onEdit({ product: d })}
+          />
+        </C.ProductButtonsRow>
       </C.ProductView>
     )
   );
@@ -76,7 +98,15 @@ const Home = () => {
       <C.NavBar>
         <img style={{ marginLeft: 30, width: 110 }} alt="logo" src={Logo} />
         <C.NavBeggining>
-          {userType === "customer" ? null : (
+          {userType === "customer" ? (
+            <C.LabelSignup>
+              <C.Strong>
+                <Link style={{ color: "#FFFB91" }} to="/cadastrarProdutos">
+                  Minhas compras
+                </Link>
+              </C.Strong>
+            </C.LabelSignup>
+          ) : (
             <C.LabelSignup>
               <C.Strong>
                 <Link style={{ color: "#FFFB91" }} to="/cadastrarProdutos">
@@ -97,7 +127,7 @@ const Home = () => {
       <C.Content>
         {userType === "customer" ? (
           <C.ListContent>
-            <C.Title>Produtos disponíveiss</C.Title>
+            <C.Title>Produtos disponíveis</C.Title>
             {listItemsForClient}
           </C.ListContent>
         ) : (

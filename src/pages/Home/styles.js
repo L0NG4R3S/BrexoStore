@@ -98,5 +98,6 @@ export const ProductView = styled.div`
   box-shadow: 0 1px 2px #0003;
   background-color: #AFFFA6;
   padding-top: 50px;
+  padding-bottom: 30px;
   border-radius: 5px;
 `;
