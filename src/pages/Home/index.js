@@ -4,25 +4,29 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Logo } from "../../assets";
 import { buscarProdutos, deletarProduto } from "../../sdk/brecho";
+import { buscarProdutosParaCliente } from "../../sdk/cliente";
 import Button from "../../components/Button";
-import * as ClienteActions from '../../store/clienteSlice'
+import * as ClienteActions from "../../store/clienteSlice";
 
 const Home = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [produtos, setProdutos] = useState([]);
   const userType = useSelector((state) => state.cliente.userType);
 
   const getProdutos = async () => {
-    const result = await buscarProdutos();
-    setProdutos(result.data);
+    if (userType !== "customer") {
+      const result = await buscarProdutos();
+      setProdutos(result.data);
+    } else {
+      const result = await buscarProdutosParaCliente();
+      setProdutos(result.data);
+    }
   };
 
   useEffect(() => {
-    if (userType !== "customer") {
-      getProdutos();
-    }
-  }, [userType]);
+    getProdutos();
+  }, []);
 
   const onDelete = async ({ id }) => {
     await deletarProduto({ id });
@@ -31,8 +35,8 @@ const Home = () => {
   };
 
   const onEdit = ({ product }) => {
-    dispatch(ClienteActions.setProductInEdition({product}));
-    navigate('/editarProduto')
+    dispatch(ClienteActions.setProductInEdition({ product }));
+    navigate("/editarProduto");
   };
 
   const listItems = produtos.map(
@@ -51,6 +55,18 @@ const Home = () => {
           />
           <Button Text="Editar" onClick={() => onEdit({ product: d })} />
         </C.ProductButtonsRow>
+      </C.ProductView>
+    )
+  );
+
+  const listItemsForClient = produtos.map(
+    (
+      d // filtrar apenas produto do brecho
+    ) => (
+      <C.ProductView key={d.id}>
+        <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
+        <C.Label>Descrição do produto: {d.description}</C.Label>
+        <C.Label>Preço do produto: {d.value}</C.Label>
       </C.ProductView>
     )
   );
@@ -79,7 +95,12 @@ const Home = () => {
         </C.LabelSignup>
       </C.NavBar>
       <C.Content>
-        {userType === "customer" ? null : (
+        {userType === "customer" ? (
+          <C.ListContent>
+            <C.Title>Produtos disponíveiss</C.Title>
+            {listItemsForClient}
+          </C.ListContent>
+        ) : (
           <C.ListContent>
             <C.Title>Meus Produtos</C.Title>
             {listItems}

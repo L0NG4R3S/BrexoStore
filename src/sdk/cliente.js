@@ -1,4 +1,4 @@
-import { post, setAxiosAuthorization } from "./api";
+import { post, setAxiosAuthorization, get } from "./api";
 
 export const login = ({ email, password }) => {
   return post("customer_api/session", { email, password })
@@ -47,6 +47,19 @@ export const register = ({
       return data;
     })
     .catch((err) => {
+      throw new Error(err.message);
+    });
+};
+
+export const buscarProdutosParaCliente = () => {
+  return get("customer_api/product")
+    .then(({ data }) => {
+      console.log("buscarProdutos", data);
+      return data;
+    })
+    .catch((err) => {
+      console.log("buscarProdutos error", err);
+
       throw new Error(err.message);
     });
 };
