@@ -15,6 +15,10 @@ const Home = () => {
   const [produtos, setProdutos] = useState([]);
   const [comment, setComment] = useState([]);
   const userType = useSelector((state) => state.cliente.userType);
+  const cliente = useSelector((state) => state.cliente);
+
+
+  console.log('userType', cliente)
 
   const getProdutos = async () => {
     if (userType !== "customer") {
@@ -44,7 +48,8 @@ const Home = () => {
   const listItems = produtos.map(
     (
       d // filtrar apenas produto do brecho
-    ) => (
+    ) => {
+      return (
       <C.ProductView key={d.id}>
         <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
         <C.Label>Descrição do produto: {d.description}</C.Label>
@@ -58,40 +63,36 @@ const Home = () => {
           <Button Text="Editar" onClick={() => onEdit({ product: d })} />
         </C.ProductButtonsRow>
       </C.ProductView>
-    )
+    )}
   );
 
-  const listItemsForClient = produtos.map(
-    (
-      d // filtrar apenas produto do brecho
-    ) => (
-      <C.ProductView key={d.id}>
-        <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
-        <C.Label>Descrição do produto: {d.description}</C.Label>
-        <C.Label>Preço do produto: R${d.value}</C.Label>
-        <Button
-          style={{ width: "20%", alignSelf: "center" }}
-          Text="Comprar"
-          color="green"
-          onClick={() => onDelete({ id: d.id })}
+  const listItemsForClient = produtos.map((d) => (
+    <C.ProductView key={d.id}>
+      <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
+      <C.Label>Descrição do produto: {d.description}</C.Label>
+      <C.Label>Preço do produto: R${d.value}</C.Label>
+      <Button
+        style={{ width: "20%", alignSelf: "center" }}
+        Text="Comprar"
+        color="green"
+        onClick={() => onDelete({ id: d.id })}
+      />
+      <C.ProductButtonsRow>
+        <Input
+          style={{ width: "60%" }}
+          type="text"
+          placeholder="Digite seu comentário"
+          value={comment}
+          onChange={(e) => [setComment(e.target.value)]}
         />
-        <C.ProductButtonsRow>
-          <Input
-            style={{ width: "60%" }}
-            type="text"
-            placeholder="Digite seu comentário"
-            value={comment}
-            onChange={(e) => [setComment(e.target.value)]}
-          />
-          <Button
-            style={{ width: "20%" }}
-            Text="Comentar"
-            onClick={() => onEdit({ product: d })}
-          />
-        </C.ProductButtonsRow>
-      </C.ProductView>
-    )
-  );
+        <Button
+          style={{ width: "20%" }}
+          Text="Comentar"
+          onClick={() => onEdit({ product: d })}
+        />
+      </C.ProductButtonsRow>
+    </C.ProductView>
+  ));
 
   return (
     <C.Container>

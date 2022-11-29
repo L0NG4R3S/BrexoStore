@@ -5,7 +5,7 @@ export const counterSlice = createSlice({
   initialState: {
     user: null,
     productInEdition: null,
-    userType: 'customer' // customer ou store
+    userType: '' // customer ou store
   },
   reducers: {
     saveUser: (state, action) => {
