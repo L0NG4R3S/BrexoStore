@@ -75,7 +75,7 @@ const Signup = () => {
 
       alert("Usuário cadatrado com sucesso!");
 
-      navigate('/home')
+      navigate('/homeClient')
     }
   };
 

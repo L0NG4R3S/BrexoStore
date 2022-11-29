@@ -13,6 +13,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import CadastrarProdutos from "./pages/CadastrarProdutos"
 import Home from "./pages/Home"
+import HomeClient from "./pages/HomeClient"
 import SigninWithBrecho from "./pages/SigninWithBrecho"
 import EditarProduto from "./pages/EditarProduto"
 
@@ -26,6 +27,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Signin />} />
               <Route path="/home" element={<Home />} />
+              <Route path="/homeClient" element={<HomeClient />} />
               <Route path="/cadastrarBrecho" element={<CadastrarBrecho />} />
               <Route exact path="/signup" element={<Signup />} />
               <Route exact path="/cadastrarProdutos" element={<CadastrarProdutos />} />

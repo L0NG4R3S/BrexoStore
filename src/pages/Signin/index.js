@@ -31,7 +31,7 @@ const Signin = () => {
       if(!!result?.session){
         alert("Login realizado com sucesso!");
         dispatch(ClienteActions.setUserType({userType: 'customer'}))
-        navigate('/home')
+        navigate('/homeClient')
       }
     } catch {
       setError("Erro! Usuário ou senha incorretos.");

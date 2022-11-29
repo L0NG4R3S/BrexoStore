@@ -1,33 +1,20 @@
 import React, { useEffect, useState } from "react";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Logo } from "../../assets";
 import { buscarProdutos, deletarProduto } from "../../sdk/brecho";
-import { buscarProdutosParaCliente } from "../../sdk/cliente";
 import Button from "../../components/Button";
 import * as ClienteActions from "../../store/clienteSlice";
-import Input from "../../components/Input";
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [produtos, setProdutos] = useState([]);
-  const [comment, setComment] = useState([]);
-  const userType = useSelector((state) => state.cliente.userType);
-  const cliente = useSelector((state) => state.cliente);
-
-
-  console.log('userType', cliente)
 
   const getProdutos = async () => {
-    if (userType !== "customer") {
-      const result = await buscarProdutos();
-      setProdutos(result.data);
-    } else {
-      const result = await buscarProdutosParaCliente();
-      setProdutos(result.data);
-    }
+    const result = await buscarProdutos();
+    setProdutos(result.data);
   };
 
   useEffect(() => {
@@ -50,72 +37,35 @@ const Home = () => {
       d // filtrar apenas produto do brecho
     ) => {
       return (
-      <C.ProductView key={d.id}>
-        <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
-        <C.Label>Descrição do produto: {d.description}</C.Label>
-        <C.Label>Preço do produto: R${d.value}</C.Label>
-        <C.ProductButtonsRow>
-          <Button
-            Text="Excluir"
-            color="red"
-            onClick={() => onDelete({ id: d.id })}
-          />
-          <Button Text="Editar" onClick={() => onEdit({ product: d })} />
-        </C.ProductButtonsRow>
-      </C.ProductView>
-    )}
+        <C.ProductView key={d.id}>
+          <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
+          <C.Label>Descrição do produto: {d.description}</C.Label>
+          <C.Label>Preço do produto: R${d.value}</C.Label>
+          <C.ProductButtonsRow>
+            <Button
+              Text="Excluir"
+              color="red"
+              onClick={() => onDelete({ id: d.id })}
+            />
+            <Button Text="Editar" onClick={() => onEdit({ product: d })} />
+          </C.ProductButtonsRow>
+        </C.ProductView>
+      );
+    }
   );
-
-  const listItemsForClient = produtos.map((d) => (
-    <C.ProductView key={d.id}>
-      <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
-      <C.Label>Descrição do produto: {d.description}</C.Label>
-      <C.Label>Preço do produto: R${d.value}</C.Label>
-      <Button
-        style={{ width: "20%", alignSelf: "center" }}
-        Text="Comprar"
-        color="green"
-        onClick={() => onDelete({ id: d.id })}
-      />
-      <C.ProductButtonsRow>
-        <Input
-          style={{ width: "60%" }}
-          type="text"
-          placeholder="Digite seu comentário"
-          value={comment}
-          onChange={(e) => [setComment(e.target.value)]}
-        />
-        <Button
-          style={{ width: "20%" }}
-          Text="Comentar"
-          onClick={() => onEdit({ product: d })}
-        />
-      </C.ProductButtonsRow>
-    </C.ProductView>
-  ));
 
   return (
     <C.Container>
       <C.NavBar>
         <img style={{ marginLeft: 30, width: 110 }} alt="logo" src={Logo} />
         <C.NavBeggining>
-          {userType === "customer" ? (
-            <C.LabelSignup>
-              <C.Strong>
-                <Link style={{ color: "#FFFB91" }} to="/cadastrarProdutos">
-                  Minhas compras
-                </Link>
-              </C.Strong>
-            </C.LabelSignup>
-          ) : (
-            <C.LabelSignup>
-              <C.Strong>
-                <Link style={{ color: "#FFFB91" }} to="/cadastrarProdutos">
-                  Cadastrar produto
-                </Link>
-              </C.Strong>
-            </C.LabelSignup>
-          )}
+          <C.LabelSignup>
+            <C.Strong>
+              <Link style={{ color: "#FFFB91" }} to="/cadastrarProdutos">
+                Cadastrar produto
+              </Link>
+            </C.Strong>
+          </C.LabelSignup>
         </C.NavBeggining>
         <C.LabelSignup>
           <C.Strong>
@@ -126,17 +76,10 @@ const Home = () => {
         </C.LabelSignup>
       </C.NavBar>
       <C.Content>
-        {userType === "customer" ? (
-          <C.ListContent>
-            <C.Title>Produtos disponíveis</C.Title>
-            {listItemsForClient}
-          </C.ListContent>
-        ) : (
-          <C.ListContent>
-            <C.Title>Meus Produtos</C.Title>
-            {listItems}
-          </C.ListContent>
-        )}
+        <C.ListContent>
+          <C.Title>Meus Produtos</C.Title>
+          {listItems}
+        </C.ListContent>
       </C.Content>
     </C.Container>
   );
