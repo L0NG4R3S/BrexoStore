@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Logo, Pencil, Trash } from "../../assets";
 import {
   buscarProdutosParaCliente,
   addComent,
   editComment,
+  deletarComentario,
 } from "../../sdk/cliente";
 import Button from "../../components/Button";
 import IconButton from "../../components/IconButton";
@@ -14,12 +15,10 @@ import Input from "../../components/Input";
 
 const HomeClient = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [produtos, setProdutos] = useState([]);
   const [comment, setComment] = useState([]);
   const [commentInEditionValue, setCommentInEditionValue] = useState("");
   const [commentInEditionNumber, setCommentInEditionNumber] = useState(0);
-  const [commentInEdition, setCommentInEdition] = useState({});
   const user = useSelector((state) => state.cliente.user);
 
   console.log("user", user);
@@ -38,12 +37,16 @@ const HomeClient = () => {
     getProdutos();
   };
 
+  const deleteComment = async ({ commentId }) => {
+    await deletarComentario({ id: commentId });
+    getProdutos();
+  };
+
   const editMyComment = async ({ commentId }) => {
     console.log("commentInEdition", commentInEditionValue);
     await editComment({ id: commentId, content: commentInEditionValue });
     setCommentInEditionValue("");
     setCommentInEditionNumber(0);
-    setCommentInEdition({});
     getProdutos();
   };
 
@@ -78,7 +81,6 @@ const HomeClient = () => {
                           onClick={() => {
                             setCommentInEditionValue(c.content);
                             setCommentInEditionNumber(d.id + c.id);
-                            setCommentInEdition(c);
                           }}
                         />
                         <IconButton
@@ -95,7 +97,7 @@ const HomeClient = () => {
                             />
                           }
                           color="red"
-                          onClick={() => registerComment({ productId: d.id })}
+                          onClick={() => deleteComment({ commentId: c.id })}
                         />
                       </>
                     ) : null}

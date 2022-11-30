@@ -1,4 +1,4 @@
-import { post, setAxiosAuthorization, get, put } from "./api";
+import { post, setAxiosAuthorization, get, put, del } from "./api";
 
 export const login = ({ email, password }) => {
   return post("customer_api/session", { email, password })
@@ -89,6 +89,19 @@ export const editComment = ({ id, content }) => {
     })
     .catch((err) => {
       console.log("editarComentario error", err);
+
+      throw new Error(err.message);
+    });
+};
+
+export const deletarComentario = ({ id }) => {
+  return del(`customer_api/comment/${id}`)
+    .then(({ data }) => {
+      console.log("deletarComentario", data);
+      return data;
+    })
+    .catch((err) => {
+      console.log("deletarComentario error", err);
 
       throw new Error(err.message);
     });
