@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Logo } from "../../assets";
 import { buscarProdutos, deletarProduto } from "../../sdk/brecho";
 import Button from "../../components/Button";
@@ -11,6 +11,7 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [produtos, setProdutos] = useState([]);
+  const user = useSelector((state) => state.cliente.user);
 
   const getProdutos = async () => {
     const result = await buscarProdutos();
@@ -36,21 +37,25 @@ const Home = () => {
     (
       d // filtrar apenas produto do brecho
     ) => {
-      return (
-        <C.ProductView key={d.id}>
-          <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
-          <C.Label>Descrição do produto: {d.description}</C.Label>
-          <C.Label>Preço do produto: R${d.value}</C.Label>
-          <C.ProductButtonsRow>
-            <Button
-              Text="Excluir"
-              color="red"
-              onClick={() => onDelete({ id: d.id })}
-            />
-            <Button Text="Editar" onClick={() => onEdit({ product: d })} />
-          </C.ProductButtonsRow>
-        </C.ProductView>
-      );
+      if (d.store_id === user.store_id) {
+        return (
+          <C.ProductView key={d.id}>
+            <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
+            <C.Label>Descrição do produto: {d.description}</C.Label>
+            <C.Label>Preço do produto: R${d.value}</C.Label>
+            <C.ProductButtonsRow>
+              <Button
+                Text="Excluir"
+                color="red"
+                onClick={() => onDelete({ id: d.id })}
+              />
+              <Button Text="Editar" onClick={() => onEdit({ product: d })} />
+            </C.ProductButtonsRow>
+          </C.ProductView>
+        );
+      }else {
+        return null;
+      }
     }
   );
 
@@ -78,7 +83,7 @@ const Home = () => {
       <C.Content>
         <C.ListContent>
           <C.Title>Meus Produtos</C.Title>
-          {listItems}
+          {produtos.some((d) => d.store_id === user.store_id) === true ? listItems :<C.Label>Você ainda não possui produtos cadastrados</C.Label> }
         </C.ListContent>
       </C.Content>
     </C.Container>

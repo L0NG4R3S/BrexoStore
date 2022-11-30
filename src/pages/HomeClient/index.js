@@ -37,7 +37,7 @@ const HomeClient = () => {
   const registerComment = async ({ productId }) => {
     await addComent({ product_id: productId, content: comment });
     getProdutos();
-    setComment('')
+    setComment("");
   };
 
   const deleteComment = async ({ commentId }) => {
@@ -149,8 +149,11 @@ const HomeClient = () => {
             style={{ width: "60%" }}
             type="text"
             placeholder="Digite seu comentário"
-            value={comment}
-            onChange={(e) => [setComment(e.target.value)]}
+            value={commentInEditionNumber === d.id ? comment : ""}
+            onChange={(e) => {
+              setCommentInEditionNumber(d.id);
+              setComment(e.target.value);
+            }}
           />
           <Button
             style={{ width: "20%" }}
