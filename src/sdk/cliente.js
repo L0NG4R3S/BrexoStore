@@ -64,6 +64,19 @@ export const buscarProdutosParaCliente = () => {
     });
 };
 
+export const listPurchases = () => {
+  return get("customer_api/order")
+    .then(({ data }) => {
+      console.log("listPurchases", data);
+      return data;
+    })
+    .catch((err) => {
+      console.log("listPurchases error", err);
+
+      throw new Error(err.message);
+    });
+};
+
 export const purchase = ({ value, product_id, discount }) => {
   return post("customer_api/order", {
     product_id,

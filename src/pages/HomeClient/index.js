@@ -37,6 +37,7 @@ const HomeClient = () => {
   const registerComment = async ({ productId }) => {
     await addComent({ product_id: productId, content: comment });
     getProdutos();
+    setComment('')
   };
 
   const deleteComment = async ({ commentId }) => {

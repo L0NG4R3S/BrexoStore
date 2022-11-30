@@ -21,16 +21,10 @@ export const ComentariosView = styled.div`
   flex-direction: row;
 `;
 
-export const ComentariosWrapper = styled.div`
-  flex-direction: row;
-  width: 40%;
-`;
-
-export const ComentariosRow = styled.div`
+export const ProductsWrapper = styled.div`
+  width: 100%;
   display: flex;
-  padding-bottom: 20px;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 `;
 
 export const NavBar = styled.div`
@@ -55,6 +49,7 @@ export const NavBeggining = styled.div`
 
 export const Label = styled.label`
   font-size: 18px;
+  padding: 5px;
 `;
 
 export const CommentLabel = styled.label`
@@ -68,6 +63,7 @@ export const CommentDate = styled.label`
 export const BoldLabel = styled.label`
   font-size: 18px;
   font-weight: bold;
+  padding: 5px;
 `;
 
 export const Title = styled.label`
