@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Logo, Pencil, Trash } from "../../assets";
 import {
   buscarProdutosParaCliente,
@@ -12,9 +12,11 @@ import {
 import Button from "../../components/Button";
 import IconButton from "../../components/IconButton";
 import Input from "../../components/Input";
+import * as ClienteActions from "../../store/clienteSlice";
 
 const HomeClient = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [produtos, setProdutos] = useState([]);
   const [comment, setComment] = useState([]);
   const [commentInEditionValue, setCommentInEditionValue] = useState("");
@@ -122,6 +124,7 @@ const HomeClient = () => {
             </>
           ))
         : null;
+
     return (
       <C.ProductView key={d.id}>
         <C.BoldLabel>Nome do produto: {d.name}</C.BoldLabel>
@@ -131,7 +134,10 @@ const HomeClient = () => {
           style={{ width: "20%", alignSelf: "center" }}
           Text="Comprar"
           color="green"
-          onClick={() => null}
+          onClick={() => {
+            dispatch(ClienteActions.setProductInBuying({ product: d }));
+            navigate("/finalizarCompra");
+          }}
         />
         <C.ComentariosView>
           <C.BoldLabel>Comentários:</C.BoldLabel>

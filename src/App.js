@@ -17,6 +17,7 @@ import HomeClient from "./pages/HomeClient"
 import SigninWithBrecho from "./pages/SigninWithBrecho"
 import EditarProduto from "./pages/EditarProduto"
 import MinhasCompras from "./pages/MinhasCompras"
+import FinalizarCompra from "./pages/FinalizarCompra"
 
 
 function App() {
@@ -34,7 +35,8 @@ function App() {
               <Route exact path="/cadastrarProdutos" element={<CadastrarProdutos />} />
               <Route exact path="/editarProduto" element={<EditarProduto />} />
               <Route path="/signinWithBrecho" element={<SigninWithBrecho />} />
-              <Route path="/minhasCompras" element={<MinhasCompras />} />
+              <Route path="/minhasCompras" element={<MinhasCompras />} /> 
+              <Route path="/finalizarCompra" element={<FinalizarCompra />} />
 
             </Routes>
           </div>

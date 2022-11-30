@@ -64,24 +64,39 @@ export const buscarProdutosParaCliente = () => {
     });
 };
 
+export const purchase = ({ value, product_id, discount }) => {
+  return post("customer_api/order", {
+    product_id,
+    value,
+    discount,
+  })
+    .then(({ data }) => {
+      console.log("data purchase", data);
+      return data;
+    })
+    .catch((err) => {
+      console.log("error purchase", err);
+      throw new Error(err.message);
+    });
+};
+
 export const addComent = ({ content, product_id }) => {
-  console.log('comentar', content, product_id)
   return post("customer_api/comment", {
     content,
     product_id,
   })
     .then(({ data }) => {
-      console.log("data", data)
+      console.log("data", data);
       return data;
     })
     .catch((err) => {
-      console.log("erro", err)
+      console.log("erro", err);
       throw new Error(err.message);
     });
 };
 
 export const editComment = ({ id, content }) => {
-  console.log('id, content', id, content)
+  console.log("id, content", id, content);
   return put(`customer_api/comment/${id}`, { content })
     .then(({ data }) => {
       console.log("editarComentario", data);
