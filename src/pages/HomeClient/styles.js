@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: #ACFCE9;
+  background-color: #acfce9;
   min-height: 100vh;
 `;
 
@@ -14,12 +14,29 @@ export const Content = styled.div`
   flex-direction: column;
 `;
 
+export const ComentariosView = styled.div`
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+`;
+
+export const ComentariosWrapper = styled.div`
+  padding: 10px;
+`;
+
+export const ComentariosRow = styled.div`
+  flex-direction: row;
+  width: 100%;
+  padding-bottom: 20px;
+`;
+
 export const NavBar = styled.div`
   display: flex;
   gap: 10px;
   height: 100px;
   box-shadow: 0 1px 2px #0003;
-  background-color: #82E0AA;
+  background-color: #82e0aa;
   width: 100%;
   align-items: center;
   flex-direction: row;
@@ -36,6 +53,18 @@ export const NavBeggining = styled.div`
 
 export const Label = styled.label`
   font-size: 18px;
+`;
+
+export const CommentLabel = styled.label`
+  font-size: 16px;
+  float: left;
+  padding-left: 25%;
+`;
+
+export const CommentDate = styled.label`
+  font-size: 14px;
+  float: right;
+  padding-right: 25%;
 `;
 
 export const BoldLabel = styled.label`
@@ -96,7 +125,7 @@ export const ProductView = styled.div`
   width: 70%;
   height: 100%;
   box-shadow: 0 1px 2px #0003;
-  background-color: #AFFFA6;
+  background-color: #afffa6;
   padding-top: 50px;
   padding-bottom: 30px;
   border-radius: 5px;

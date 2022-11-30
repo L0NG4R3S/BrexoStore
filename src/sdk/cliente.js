@@ -8,7 +8,7 @@ export const login = ({ email, password }) => {
       return data;
     })
     .catch((err) => {
-      console.log('Login error', err)
+      console.log("Login error", err);
       throw new Error(err.message);
     });
 };
@@ -24,7 +24,7 @@ export const register = ({
   address_number,
   address_district,
   city,
-  state
+  state,
 }) => {
   return post("customer_api/customer", {
     name,
@@ -37,10 +37,10 @@ export const register = ({
     address_number,
     address_district,
     city,
-    state
+    state,
   })
     .then(({ data }) => {
-      if(data?.session?.token){
+      if (data?.session?.token) {
         setAxiosAuthorization(data?.session?.token);
         console.log("TOKEN REGISTER", data?.session?.token);
       }
@@ -60,6 +60,22 @@ export const buscarProdutosParaCliente = () => {
     .catch((err) => {
       console.log("buscarProdutos error", err);
 
+      throw new Error(err.message);
+    });
+};
+
+export const addComent = ({ content, product_id }) => {
+  console.log('comentar', content, product_id)
+  return post("customer_api/comment", {
+    content,
+    product_id,
+  })
+    .then(({ data }) => {
+      console.log("data", data)
+      return data;
+    })
+    .catch((err) => {
+      console.log("erro", err)
       throw new Error(err.message);
     });
 };
