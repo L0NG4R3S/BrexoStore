@@ -24,8 +24,6 @@ export const ComentariosView = styled.div`
 export const ComentariosWrapper = styled.div`
   flex-direction: row;
   width: 40%;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const ComentariosRow = styled.div`
@@ -61,7 +59,6 @@ export const Label = styled.label`
 
 export const CommentLabel = styled.label`
   font-size: 16px;
-  margin-top: 10px;
 `;
 
 export const CommentDate = styled.label`

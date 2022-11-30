@@ -31,6 +31,7 @@ const Signin = () => {
       if(!!result?.session){
         alert("Login realizado com sucesso!");
         dispatch(ClienteActions.setUserType({userType: 'customer'}))
+        dispatch(ClienteActions.saveUser({ user: result?.session?.user }));
         navigate('/homeClient')
       }
     } catch {

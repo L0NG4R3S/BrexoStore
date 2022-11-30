@@ -1,4 +1,4 @@
-import { post, setAxiosAuthorization, get } from "./api";
+import { post, setAxiosAuthorization, get, put } from "./api";
 
 export const login = ({ email, password }) => {
   return post("customer_api/session", { email, password })
@@ -76,6 +76,20 @@ export const addComent = ({ content, product_id }) => {
     })
     .catch((err) => {
       console.log("erro", err)
+      throw new Error(err.message);
+    });
+};
+
+export const editComment = ({ id, content }) => {
+  console.log('id, content', id, content)
+  return put(`customer_api/comment/${id}`, { content })
+    .then(({ data }) => {
+      console.log("editarComentario", data);
+      return data;
+    })
+    .catch((err) => {
+      console.log("editarComentario error", err);
+
       throw new Error(err.message);
     });
 };

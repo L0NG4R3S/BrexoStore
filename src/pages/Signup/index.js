@@ -71,7 +71,7 @@ const Signup = () => {
     } else {
 
       dispatch(ClienteActions.setUserType({ userType: 'customer' }))
-
+      dispatch(ClienteActions.saveUser({ user: result?.session?.user }));
 
       alert("Usuário cadatrado com sucesso!");
 

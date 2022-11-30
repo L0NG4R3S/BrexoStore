@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import * as C from "./styles";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { Logo } from "../../assets";
-import { buscarProdutosParaCliente, addComent } from "../../sdk/cliente";
+import { useDispatch, useSelector } from "react-redux";
+import { Logo, Pencil, Trash } from "../../assets";
+import {
+  buscarProdutosParaCliente,
+  addComent,
+  editComment,
+} from "../../sdk/cliente";
 import Button from "../../components/Button";
+import IconButton from "../../components/IconButton";
 import Input from "../../components/Input";
 
 const HomeClient = () => {
@@ -12,6 +17,12 @@ const HomeClient = () => {
   const dispatch = useDispatch();
   const [produtos, setProdutos] = useState([]);
   const [comment, setComment] = useState([]);
+  const [commentInEditionValue, setCommentInEditionValue] = useState("");
+  const [commentInEditionNumber, setCommentInEditionNumber] = useState(0);
+  const [commentInEdition, setCommentInEdition] = useState({});
+  const user = useSelector((state) => state.cliente.user);
+
+  console.log("user", user);
 
   const getProdutos = async () => {
     const result = await buscarProdutosParaCliente();
@@ -27,16 +38,86 @@ const HomeClient = () => {
     getProdutos();
   };
 
+  const editMyComment = async ({ commentId }) => {
+    console.log("commentInEdition", commentInEditionValue);
+    await editComment({ id: commentId, content: commentInEditionValue });
+    setCommentInEditionValue("");
+    setCommentInEditionNumber(0);
+    setCommentInEdition({});
+    getProdutos();
+  };
+
   const listItemsForClient = produtos.map((d) => {
     const comments =
       d.comments.length > 0
         ? d.comments.map((c) => (
-            <C.ComentariosWrapper>
-              <C.ComentariosRow key={c.content}>
-                <C.CommentLabel>{c.content}</C.CommentLabel>
-                <C.CommentDate>{c.created_at}</C.CommentDate>
-              </C.ComentariosRow>
-            </C.ComentariosWrapper>
+            <>
+              {commentInEditionNumber !== d.id + c.id ? (
+                <C.ComentariosRow key={c.content + c.id}>
+                  <C.ComentariosWrapper>
+                    <C.CommentLabel>{c.content}</C.CommentLabel>
+                  </C.ComentariosWrapper>
+                  <C.ComentariosWrapper>
+                    <C.CommentDate>{c.created_at}</C.CommentDate>
+                    {console.log("ids", c.customer_id, user.id)}
+                    {c.customer_id === user?.id ? (
+                      <>
+                        <IconButton
+                          style={{
+                            width: "12%",
+                            paddingTop: 5,
+                            paddingBottom: 5,
+                          }}
+                          icon={
+                            <img
+                              style={{ width: 20 }}
+                              alt="pencil"
+                              src={Pencil}
+                            />
+                          }
+                          onClick={() => {
+                            setCommentInEditionValue(c.content);
+                            setCommentInEditionNumber(d.id + c.id);
+                            setCommentInEdition(c);
+                          }}
+                        />
+                        <IconButton
+                          style={{
+                            width: "12%",
+                            paddingTop: 5,
+                            paddingBottom: 5,
+                          }}
+                          icon={
+                            <img
+                              style={{ width: 20, padding: "0px" }}
+                              alt="trash"
+                              src={Trash}
+                            />
+                          }
+                          color="red"
+                          onClick={() => registerComment({ productId: d.id })}
+                        />
+                      </>
+                    ) : null}
+                  </C.ComentariosWrapper>
+                </C.ComentariosRow>
+              ) : (
+                <C.ProductButtonsRow>
+                  <Input
+                    style={{ width: "60%" }}
+                    type="text"
+                    placeholder="Digite seu comentário"
+                    value={commentInEditionValue}
+                    onChange={(e) => [setCommentInEditionValue(e.target.value)]}
+                  />
+                  <Button
+                    style={{ width: "20%" }}
+                    Text="Editar"
+                    onClick={() => editMyComment({ commentId: c.id })}
+                  />
+                </C.ProductButtonsRow>
+              )}
+            </>
           ))
         : null;
     return (
@@ -79,7 +160,7 @@ const HomeClient = () => {
         <C.NavBeggining>
           <C.LabelSignup>
             <C.Strong>
-              <Link style={{ color: "#FFFB91" }} to="/cadastrarProdutos">
+              <Link style={{ color: "#FFFB91" }} to="/minhasCompras">
                 Minhas compras
               </Link>
             </C.Strong>
